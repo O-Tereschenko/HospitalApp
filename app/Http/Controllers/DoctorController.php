@@ -29,15 +29,19 @@ class DoctorController extends Controller
 
     public function index()
     {
-        return response()->json(array_values($this->doctors), 200, [], JSON_UNESCAPED_UNICODE);
+    return view('doctors.index', [
+        'doctors' => $this->doctors
+    ]);
     }
 
     public function show($id)
     {
-        if(isset($this->doctors[$id])){
-            return response()->json($this->doctors[$id], 200, [], JSON_UNESCAPED_UNICODE);
-        }
+    if(isset($this->doctors[$id])){
+        return view('doctors.show', [
+            'doctor' => $this->doctors[$id]
+        ]);
+    }
 
-        return "Лікаря з таким ID не знайдено";
+    abort(404);
     }
 }
