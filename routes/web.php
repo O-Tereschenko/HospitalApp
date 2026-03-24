@@ -12,6 +12,6 @@ Route::get('/doctors/{id}', [DoctorController::class, 'show']);
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('doctors', AdminDoctorController::class)->only([
-        'index', 'show', 'destroy'
+        'index', 'show', 'destroy', 'store', 'create'
     ]);
 });

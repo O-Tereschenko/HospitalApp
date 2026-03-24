@@ -10,6 +10,10 @@
     </div>
 @endif
 
+<a href="{{ route('admin.doctors.create') }}" class="btn btn-success mb-3">
+    Додати лікаря
+</a>
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>

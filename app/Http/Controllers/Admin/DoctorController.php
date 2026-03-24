@@ -25,4 +25,28 @@ class DoctorController extends Controller
         return redirect()->route('admin.doctors.index')
             ->with('success', 'Лікаря успішно видалено');
     }
+
+    public function create()
+    {
+        return view('admin.doctors.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+        'name' => 'required',
+        'specialty' => 'required',
+        'price' => 'required|numeric|min:1'
+    ]);
+
+    Doctor::create([
+        'name' => $request->name,
+        'specialty' => $request->specialty,
+        'price' => $request->price
+    ]);
+
+    return redirect()->route('admin.doctors.index')
+        ->with('success', 'Лікаря успішно додано');
+    }
+
 }
