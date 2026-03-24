@@ -10,15 +10,35 @@
 <body class="d-flex flex-column min-vh-100">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
-    <a class="navbar-brand" href="/">HospitalApp</a>
+    <div class="container">
+        <a class="navbar-brand" href="/">HospitalApp</a>
 
-    <div class="navbar-nav">
-        <a class="nav-link" href="/">Головна</a>
-        <a class="nav-link" href="/doctors">Лікарі</a>
-        <a class="nav-link" href="/about">Про проєкт</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Головна</a>
+            <a class="nav-link" href="/doctors">Лікарі</a>
+            <a class="nav-link" href="/about">Про проєкт</a>
+
+            @guest
+                <a class="nav-link" href="{{ route('login') }}">Вхід</a>
+                <a class="nav-link" href="{{ route('register') }}">Реєстрація</a>
+            @endguest
+
+            @auth
+                <a class="nav-link" href="/admin/doctors">Адмінка</a>
+
+                <span class="nav-link text-white">
+                    {{ Auth::user()->name }}
+                </span>
+
+                <form method="POST" action="{{ route('logout') }}" class="d-flex align-items-center ms-2">
+                @csrf
+                <button type="submit" class="nav-link text-white border-0 bg-transparent p-0">
+                    Вихід
+                </button>
+                </form>
+            @endauth
+        </div>
     </div>
-</div>
 </nav>
 
 <main class="flex-grow-1">
