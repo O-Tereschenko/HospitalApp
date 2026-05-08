@@ -25,17 +25,11 @@ class DoctorController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'specialty' => 'required',
-            'price' => 'required|numeric|min:1'
-        ]);
-
-        $doctor = Doctor::create($request->all());
-
-        return response()->json($doctor, 201);
-    }
+{
+    return response()->json([
+        'message' => 'Validation error'
+    ], 422);
+}
 
     public function update(Request $request, $id)
     {
