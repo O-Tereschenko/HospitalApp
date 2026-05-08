@@ -9,6 +9,7 @@ class Doctor extends Model
     protected $fillable = [
         'name',
         'specialty',
-        'price'
+        'price',
+        'image'
     ];
 }
